@@ -39,3 +39,14 @@ CATATAN AUDIT SUMBER
 - Generator yang belum dimasukkan perlu diaudit dan dimigrasikan satu per satu sebelum dipublikasikan.
 - Hasil script RouterOS tetap harus ditinjau sesuai versi RouterOS, interface, gateway, routing,
   dan topologi aktual. Uji di lab/Safe Mode sebelum produksi.
+
+
+UPDATE TEMA
+Seluruh 7 halaman generator pada paket ini sudah diberi override tema NETFIX TOOLS:
+- Header charcoal (#292929) dengan aksen orange (#f26a12)
+- Latar halaman abu-abu terang
+- Panel/form putih dengan teks gelap
+- Tombol dan link orange
+- Panel output script tetap gelap agar kode mudah dibaca
+- Layout responsif untuk layar ponsel
+Tema ini diselaraskan dengan tampilan utama NETFIX TOOLS/PONCALC.
