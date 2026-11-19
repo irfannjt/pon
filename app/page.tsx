@@ -206,7 +206,9 @@ export default function Home() {
           </div>
         </section>}
 
-        <footer className="pon-footer"><span>PONCALC · FTTH & PON TOOLS</span><span>Perhitungan estimasi splitter dan redaman jalur</span></footer>
+        <footer className="pon-footer">
+  <span>© Copyright IRFANNJT - 087842457503</span>
+</footer>
       </div>
     </main>
   );
