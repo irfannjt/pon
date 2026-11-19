@@ -1,0 +1,12 @@
+
+/* Imported generator cards for NETFIX TOOLS */
+.nt-imported-section{margin-top:28px}
+.nt-imported-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.nt-imported-card{display:flex;flex-direction:column;gap:9px;min-height:150px;padding:18px;border:1px solid #e1e5eb;
+border-radius:14px;background:#fff;color:#20242b;text-decoration:none;box-shadow:0 3px 12px #18202b0a;transition:.18s}
+.nt-imported-card:hover{border-color:#f26a12;transform:translateY(-2px);box-shadow:0 8px 22px #18202b14}
+.nt-imported-card span{font-size:9px;font-weight:800;letter-spacing:.12em;color:#e66a1b}
+.nt-imported-card b{font-size:15px}.nt-imported-card p{margin:0;color:#687386;font-size:12px;line-height:1.5;flex:1}
+.nt-imported-card strong{font-size:11px;color:#e66a1b}
+@media(max-width:850px){.nt-imported-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:560px){.nt-imported-grid{grid-template-columns:1fr}}
