@@ -57,15 +57,18 @@
 @media(max-width:850px){.nt-card-grid,.nt-roadmap-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.nt-form-grid.three{grid-template-columns:repeat(2,minmax(0,1fr))}.nt-results{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.pon-tools-float{right:12px;bottom:12px;padding:9px 12px}.nt-header{height:64px;padding:0 14px}.nt-brand b{font-size:16px}.nt-back{font-size:10px}.nt-container{width:calc(100% - 20px);margin:14px auto}.nt-hero{padding:22px 18px;border-radius:13px}.nt-hero-stats{gap:6px}.nt-hero-stats span{font-size:9px;padding:7px}.nt-card-grid,.nt-roadmap-grid,.nt-form-grid.two,.nt-form-grid.three,.nt-results,.nt-results.two,.nt-results.three{grid-template-columns:1fr}.nt-tool-card{min-height:175px}.nt-workspace{padding:15px}.nt-tool-title h2{font-size:20px}.nt-footer{flex-direction:column}.nt-script-actions{flex-direction:column}.nt-script-actions button{justify-content:center}}
 
-
-/* NETFIX TOOLS — imported MikroTik generator catalogue */
-.nt-imported-section{margin-top:30px}
-.nt-imported-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:13px}
-.nt-imported-card{display:flex;flex-direction:column;align-items:flex-start;gap:9px;min-height:165px;padding:18px;border:1px solid #e0e4e9;border-radius:13px;background:#fff;color:#252a32;text-decoration:none;box-shadow:0 3px 12px #00000008;transition:.16s}
-.nt-imported-card:hover{border-color:#f5a16e;transform:translateY(-2px);box-shadow:0 9px 22px #00000010}
-.nt-imported-card>span{font-size:9px;font-weight:800;letter-spacing:.11em;color:#e45e0b}
-.nt-imported-card>b{font-size:15px;color:#20242b}
-.nt-imported-card p{margin:0;color:#707985;font-size:11px;line-height:1.55;flex:1}
-.nt-imported-card strong{display:flex;align-items:center;gap:6px;color:#df5d0b;font-size:11px}
-@media(max-width:850px){.nt-imported-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
-@media(max-width:560px){.nt-imported-grid{grid-template-columns:1fr}}
+/* NETFIX PCC generator form improvements */
+.nt-form-grid .nt-full { grid-column: 1 / -1; }
+.nt-form-grid textarea {
+  width: 100%;
+  box-sizing: border-box;
+  resize: vertical;
+  min-height: 92px;
+  padding: 11px 13px;
+  border: 1px solid var(--nt-border, #d7dce3);
+  border-radius: 10px;
+  background: var(--nt-input, #fff);
+  color: inherit;
+  font: inherit;
+  line-height: 1.55;
+}
