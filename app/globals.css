@@ -1,35 +1,102 @@
-/* BuanaNet-inspired charcoal + orange theme */
-.pon-app{--bg:#262626;--panel:#fff;--soft:#f1f1f1;--line:#dedede;--text:#202020;--muted:#686868;--blue:#f26a12;--mint:#ff7a1a;background:var(--bg);color:var(--text)}
-.pon-app:not(.dark) .pon-topbar{background:#383838;border-bottom:1px solid #4a4a4a;color:#fff}
-.pon-app:not(.dark) .pon-brand b,.pon-app:not(.dark) .pon-brand small{color:#fff}
-.pon-app:not(.dark) .pon-brand b span{color:#ff7417}
-.pon-app:not(.dark) .pon-brand-icon{background:#ff7417;color:#fff}
-.pon-app:not(.dark) .pon-theme,.pon-app:not(.dark) .pon-secondary{background:#454545;border-color:#5a5a5a;color:#fff}
-.pon-app:not(.dark) .pon-hero,.pon-app:not(.dark) .pon-panel{background:#fff;border-color:#dedede;box-shadow:0 5px 18px #00000022}
-.pon-app:not(.dark) .pon-eyebrow,.pon-app:not(.dark) .pon-step{color:#e85f08}
-.pon-app:not(.dark) .pon-tabs{background:#eee;border-color:#dedede}
-.pon-app:not(.dark) .pon-tabs button.active{background:#f26a12;color:#fff;box-shadow:0 2px 7px #f26a1240}
-.pon-app:not(.dark) .pon-primary{background:#f26a12;box-shadow:0 2px 5px #f26a1233}
-.pon-app:not(.dark) .pon-primary:hover{background:#dc5705}
-.pon-app:not(.dark) .pon-source{border-color:#f5bd96}
-.pon-app:not(.dark) .pon-source-title{background:#fff0e5;color:#7c350b}
-.pon-app:not(.dark) .pon-chain{border-left-color:#f5b184}
-.pon-app:not(.dark) .pon-chain-start>span{background:#fff0e5;color:#e85f08}
-.pon-app:not(.dark) .pon-node{border-color:#efc6a9}
-.pon-app:not(.dark) .pon-node-plc{border-color:#f2b27f}
-.pon-app:not(.dark) .pon-node-fbt{border-color:#edc39f}
-.pon-app:not(.dark) .pon-node-index{background:#fff0e5;color:#d95608}
-.pon-app:not(.dark) .pon-node-output b,.pon-app:not(.dark) .pon-metric b,.pon-app:not(.dark) .pon-node-metrics b,.pon-app:not(.dark) .pon-result-card>strong{color:#e85f08}
-.pon-app:not(.dark) .pon-note{background:#f3f3f3;color:#555}
-.pon-app:not(.dark) .pon-note svg{color:#e85f08}
-.pon-app:not(.dark) .pon-status{background:#fff0e5;color:#a84308}
-.pon-app:not(.dark) .pon-status.good{background:#e1f5e9;color:#087b52}
-.pon-app:not(.dark) .pon-status.warning{background:#fff1d5;color:#96620b}
-.pon-app:not(.dark) .pon-status.danger{background:#ffe3df;color:#a52b2b}
-.pon-app:not(.dark) .pon-ont-readout{color:#d95c0b}
-.pon-app:not(.dark) .pon-result-card,.pon-app:not(.dark) .pon-standard{background:#f7f7f7}
-.pon-app:not(.dark) .pon-fbt-outputs>div{background:#fff2e9;border-color:#f5d2bd}
-.pon-app:not(.dark) .pon-fbt-outputs>div+div{background:#f5f5f5;border-color:#dedede}
-.pon-app:not(.dark) .pon-fbt-outputs b,.pon-app:not(.dark) .pon-fbt-outputs strong{color:#df5b0b}
-.pon-app:not(.dark) .pon-fbt-outputs>div+div b,.pon-app:not(.dark) .pon-fbt-outputs>div+div strong{color:#444}
-.pon-app:not(.dark) input:focus,.pon-app:not(.dark) select:focus{outline:2px solid #f7b184;border-color:#ed6b19}
+css = r'''@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{color-scheme:light;--bg:#262626;--panel:#fff;--soft:#f4f4f4;--line:#e3e3e3;--text:#202020;--muted:#6b7280;--orange:#f26a12;--orange-dark:#df5908;--orange-soft:#fff0e5;--green:#087b52;--red:#b42318;--shadow:0 8px 24px rgba(0,0,0,.12)}
+*{box-sizing:border-box}
+html,body{margin:0;min-height:100%;font-family:Inter,Arial,sans-serif;background:#262626;color:var(--text)}
+body{font-size:14px;line-height:1.5}
+button,input,select{font:inherit}
+button{cursor:pointer}
+.pon-app{min-height:100vh;background:#262626;color:var(--text);font-family:Inter,Arial,sans-serif;padding-bottom:28px}
+.pon-topbar{width:100%;min-height:76px;background:#383838;border-bottom:1px solid #4b4b4b;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:14px max(24px,calc((100% - 1120px)/2));gap:20px}
+.pon-brand{display:flex;align-items:center;gap:11px;color:#fff}
+.pon-brand-icon{width:42px;height:42px;border-radius:12px;background:var(--orange);color:#fff;display:grid;place-items:center}
+.pon-brand b{display:block;font-size:20px;line-height:1.15;letter-spacing:.02em;color:#fff}
+.pon-brand b span{color:#ff7417}
+.pon-brand small{display:block;color:#dedede;font-size:10px;font-weight:700;letter-spacing:.12em;margin-top:3px}
+.pon-theme{width:38px;height:38px;border:1px solid #626262;border-radius:10px;background:#484848;color:#fff;display:grid;place-items:center}
+.pon-shell{width:min(1120px,calc(100% - 32px));margin:26px auto 0}
+.pon-hero{background:#fff;border:1px solid #e5e5e5;border-radius:18px;padding:25px 28px;box-shadow:var(--shadow);display:flex;align-items:center;justify-content:space-between;gap:24px;margin-bottom:18px}
+.pon-eyebrow{display:flex;align-items:center;gap:6px;color:var(--orange-dark);font-size:11px;font-weight:800;letter-spacing:.12em;margin-bottom:9px}
+.pon-hero h1{font-size:clamp(23px,3vw,32px);line-height:1.2;letter-spacing:-.035em;margin:0 0 8px;color:#202020}
+.pon-hero p,.pon-panel-head p{margin:0;color:#69707a;font-size:13px}
+.pon-tabs{display:flex;align-items:center;gap:5px;background:#f1f1f1;border:1px solid #e3e3e3;border-radius:12px;padding:5px;flex-shrink:0}
+.pon-tabs button{border:0;border-radius:8px;padding:10px 12px;background:transparent;color:#4b5563;display:flex;align-items:center;gap:7px;font-size:12px;font-weight:700;white-space:nowrap}
+.pon-tabs button.active{background:var(--orange);color:#fff;box-shadow:0 3px 8px #f26a1240}
+.pon-panel{background:#fff;border:1px solid #e3e3e3;border-radius:16px;padding:24px;box-shadow:var(--shadow);margin-bottom:18px}
+.pon-panel-head{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:20px}
+.pon-step{display:block;color:var(--orange-dark);font-size:10px;font-weight:800;letter-spacing:.14em;margin-bottom:5px}
+.pon-panel h2{font-size:21px;letter-spacing:-.025em;margin:0 0 5px;color:#202020}
+.pon-secondary{display:inline-flex;align-items:center;gap:7px;border:1px solid #d9d9d9;border-radius:9px;background:#fff;color:#454545;padding:9px 13px;font-size:12px;font-weight:700}
+.pon-source{border:1px solid #f0c5a8;border-radius:13px;overflow:hidden;margin-bottom:20px}
+.pon-source-title{background:#fff0e5;color:#73380f;padding:12px 15px;display:flex;align-items:center;gap:8px;font-size:13px;font-weight:800}
+.pon-source-grid{padding:16px;display:grid;grid-template-columns:1.2fr 1fr 1fr;gap:14px;align-items:end}
+.pon-source-grid label,.pon-fields label{display:flex;flex-direction:column;gap:6px;font-size:12px;font-weight:700;color:#4b5563}
+.pon-app input,.pon-app select{width:100%;min-width:0;border:1px solid #d4d7dc;border-radius:8px;background:#fff;color:#202020;padding:10px 11px;outline:none}
+.pon-app input:focus,.pon-app select:focus{border-color:var(--orange);box-shadow:0 0 0 3px #f26a1220}
+.pon-metric,.pon-node-metrics>div{background:#f6f7f8;border:1px solid #eceef0;border-radius:10px;padding:10px 12px;min-height:66px;display:flex;flex-direction:column;justify-content:center;gap:4px}
+.pon-metric small,.pon-node-metrics small{font-size:9px;font-weight:800;letter-spacing:.08em;color:#7b8490}
+.pon-metric b{font-size:18px;color:var(--orange-dark);font-variant-numeric:tabular-nums}
+.pon-chain{border-left:2px solid #f3bd98;margin-left:21px;padding:2px 0 2px 22px;display:flex;flex-direction:column;gap:13px}
+.pon-chain-start{display:flex;align-items:center;gap:12px;margin-left:-37px;padding:5px 0}
+.pon-chain-start>span{width:32px;height:32px;border-radius:10px;background:var(--orange-soft);color:var(--orange-dark);display:grid;place-items:center}
+.pon-chain-start b{display:block;font-size:13px}
+.pon-chain-start small{color:#7b8490;font-size:11px}
+.pon-empty{background:#f7f7f7;border:1px dashed #d5d5d5;border-radius:10px;padding:18px;color:#777;font-size:13px;text-align:center}
+.pon-node{border:1px solid #e8c6b0;border-radius:12px;background:#fff;overflow:hidden}
+.pon-node-head{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:12px 15px;background:#fffaf7;border-bottom:1px solid #f1e0d5}
+.pon-node-head>div{display:flex;align-items:center;gap:9px;font-size:13px}
+.pon-node-index{width:25px;height:25px;display:grid;place-items:center;border-radius:8px;background:var(--orange-soft);color:var(--orange-dark);font-size:11px;font-weight:800}
+.pon-delete{border:0;background:transparent;color:#9b5140;display:flex;align-items:center;gap:5px;font-size:11px}
+.pon-node-metrics{padding:13px 14px 0;display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.pon-node-metrics b{font-size:14px;color:var(--orange-dark);font-variant-numeric:tabular-nums}
+.pon-fields{padding:13px 14px 15px;display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.pon-fbt-outputs{display:grid;grid-template-columns:1fr 1fr;gap:10px;padding:0 14px 14px}
+.pon-fbt-outputs>div{background:#fff2e9;border:1px solid #f5d2bd;border-radius:10px;padding:11px}
+.pon-fbt-outputs>div+div{background:#f5f5f5;border-color:#dedede}
+.pon-fbt-outputs b,.pon-fbt-outputs strong{color:#df5b0b}
+.pon-ont-readout{padding:12px 14px 15px;color:#d95c0b;font-size:13px;font-weight:800}
+.pon-node-output{padding:0 14px 14px;font-size:12px;color:#626b76}
+.pon-add-row{display:flex;align-items:center;justify-content:flex-end;gap:9px;margin-top:16px}
+.pon-add-select{width:min(280px,100%)!important}
+.pon-primary{display:inline-flex;align-items:center;justify-content:center;gap:7px;border:0;border-radius:9px;background:var(--orange);color:#fff;padding:10px 15px;font-size:12px;font-weight:800;box-shadow:0 3px 8px #f26a1230}
+.pon-primary:hover{background:var(--orange-dark)}
+.pon-note{margin-top:17px;background:#f4f4f4;border:1px solid #e7e7e7;border-radius:10px;padding:12px 14px;color:#626b76;font-size:12px;display:flex;align-items:flex-start;gap:8px}
+.pon-note svg{color:var(--orange-dark);flex-shrink:0}
+.pon-result-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:13px;margin-top:18px}
+.pon-result-card{background:#f7f7f7;border:1px solid #e5e5e5;border-radius:12px;padding:15px}
+.pon-result-card>strong{display:block;color:var(--orange-dark);font-size:21px;margin-top:5px}
+.pon-status{display:inline-flex;align-items:center;border-radius:999px;padding:4px 9px;background:#fff0e5;color:#9a480d;font-size:11px;font-weight:800}
+.pon-status.good{background:#e1f5e9;color:#087b52}
+.pon-status.warning{background:#fff1d5;color:#96620b}
+.pon-status.danger{background:#ffe3df;color:#a52b2b}
+.pon-standard-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.pon-standard{border:1px solid #e5e5e5;border-radius:12px;padding:16px;background:#f7f7f7}
+.pon-standard b{display:block;font-size:16px;margin-bottom:5px}
+.pon-standard p{margin:0;color:#69707a;font-size:12px}
+.pon-standard.good{border-color:#b8e5cb;background:#effaf3}
+.pon-standard.warning{border-color:#f3dfae;background:#fff9e9}
+.pon-standard.danger{border-color:#f0c1bd;background:#fff2f1}
+.pon-footer{color:#bdbdbd;text-align:center;font-size:10px;padding:18px 10px}
+.pon-app.dark{background:#1d1d1d;color:#f2f2f2}
+.pon-app.dark .pon-hero,.pon-app.dark .pon-panel{background:#2c2c2c;border-color:#444}
+.pon-app.dark .pon-hero h1,.pon-app.dark .pon-panel h2,.pon-app.dark .pon-node-head b{color:#f5f5f5}
+.pon-app.dark .pon-hero p,.pon-app.dark .pon-panel-head p,.pon-app.dark .pon-fields label{color:#c2c2c2}
+.pon-app.dark .pon-tabs{background:#242424;border-color:#444}
+.pon-app.dark .pon-tabs button{color:#ddd}
+.pon-app.dark .pon-tabs button.active{background:var(--orange);color:#fff}
+.pon-app.dark .pon-source,.pon-app.dark .pon-node{background:#292929;border-color:#67432f}
+.pon-app.dark .pon-source-title,.pon-app.dark .pon-node-head{background:#3a2b23;color:#ffd9c2;border-color:#67432f}
+.pon-app.dark .pon-metric,.pon-app.dark .pon-node-metrics>div,.pon-app.dark .pon-empty,.pon-app.dark .pon-note,.pon-app.dark .pon-result-card,.pon-app.dark .pon-standard{background:#353535;border-color:#4a4a4a;color:#eee}
+.pon-app.dark .pon-metric small,.pon-app.dark .pon-node-metrics small,.pon-app.dark .pon-node-output{color:#bbb}
+.pon-app.dark .pon-secondary{background:#383838;border-color:#555;color:#eee}
+.pon-app.dark input,.pon-app.dark select{background:#242424;border-color:#555;color:#fff}
+.pon-app.dark .pon-fbt-outputs>div{background:#3b2c24;border-color:#67432f}
+.pon-app.dark .pon-fbt-outputs>div+div{background:#353535;border-color:#4a4a4a}
+.pon-app.dark .pon-standard.good{background:#19382b}.pon-app.dark .pon-standard.warning{background:#3c321d}.pon-app.dark .pon-standard.danger{background:#402321}
+@media(max-width:850px){.pon-hero{align-items:flex-start;flex-direction:column}.pon-tabs{width:100%;overflow-x:auto}.pon-tabs button{flex:1;justify-content:center}.pon-source-grid{grid-template-columns:1fr 1fr}.pon-source-grid label{grid-column:1/-1}.pon-standard-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.pon-topbar{padding:12px 16px;min-height:66px}.pon-brand b{font-size:17px}.pon-shell{width:calc(100% - 20px);margin-top:14px}.pon-hero,.pon-panel{padding:17px;border-radius:13px}.pon-hero h1{font-size:23px}.pon-tabs button{padding:9px 8px;font-size:11px}.pon-panel-head{align-items:flex-start;flex-direction:column}.pon-source-grid,.pon-fields,.pon-node-metrics,.pon-fbt-outputs,.pon-result-grid,.pon-standard-grid{grid-template-columns:1fr}.pon-source-grid label{grid-column:auto}.pon-add-row{align-items:stretch;flex-direction:column}.pon-add-select{width:100%!important}.pon-primary{width:100%}.pon-chain{margin-left:10px;padding-left:16px}.pon-chain-start{margin-left:-31px}}
+'''
+path = "/mnt/data/pon-globals-complete.css"
+with open(path, "w", encoding="utf-8") as f:
+    f.write(css)
+print(f"File CSS lengkap dibuat: {path}")
