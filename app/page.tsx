@@ -1,7 +1,7 @@
 'use client';
 
 import { useMemo, useState } from 'react';
-import { Activity, ArrowRight, Cable, CheckCircle2, Info, Moon, Network, RotateCcw, Sun, Waves, Zap, Trash2 } from 'lucide-react';
+import { Activity, ArrowRight, Cable, CheckCircle2, FileDown, Info, Moon, Network, RotateCcw, Sun, Waves, Zap, Trash2 } from 'lucide-react';
 
 type Tab = 'topology' | 'splitter' | 'standard';
 type Kind = 'fiber' | 'splice' | 'connector' | 'plc' | 'fbt' | 'ont';
@@ -127,7 +127,13 @@ export default function Home() {
         </section>
 
         {tab === 'topology' && <section className="pon-panel">
-          <div className="pon-panel-head"><div><span className="pon-step">DESAIN JARINGAN</span><h2>Topologi & Perhitungan Redaman</h2><p>Setiap komponen menerima daya dari keluaran komponen sebelumnya.</p></div><button className="pon-secondary" onClick={reset}><RotateCcw size={14}/> Reset</button></div>
+          <div className="pon-panel-head">
+            <div><span className="pon-step">DESAIN JARINGAN</span><h2>Topologi & Perhitungan Redaman</h2><p>Setiap komponen menerima daya dari keluaran komponen sebelumnya.</p></div>
+            <div className="pon-head-actions">
+              <button className="pon-secondary" onClick={() => window.print()}><FileDown size={14}/> Export PDF</button>
+              <button className="pon-secondary" onClick={reset}><RotateCcw size={14}/> Reset</button>
+            </div>
+          </div>
           <div className="pon-source">
             <div className="pon-source-title"><Zap size={16}/> Sumber Input (OLT / ODC / ODP)</div>
             <div className="pon-source-grid">
@@ -206,9 +212,52 @@ export default function Home() {
           </div>
         </section>}
 
-        <footer className="pon-footer">
-  <span>© Copyright IRFANNJT - 087842457503</span>
-</footer>
+        <footer className="pon-footer"><span>© Copyright IRFANNJT - 087842457503</span></footer>
+
+        <section className="pon-print-report">
+          <header className="pon-print-header">
+            <div className="pon-print-brand">PON<span>CALC</span><small>FTTH & PON TOOLS</small></div>
+            <div className="pon-print-meta">LAPORAN PERHITUNGAN JARINGAN FTTH<br/>Dicetak: {new Date().toLocaleString('id-ID')}</div>
+          </header>
+          <h1>Laporan Topologi & Link Budget PON</h1>
+          <p className="pon-print-subtitle">Dokumentasi susunan komponen dan estimasi daya optik setiap titik jaringan.</p>
+          <div className="pon-print-summary">
+            <div><small>DAYA INPUT OLT / ODC / ODP</small><b>{validInput ? fmt(sourcePower) : 'Input tidak valid'}</b></div>
+            <div><small>DAYA KELUARAN AKHIR (JALUR PASS)</small><b>{validInput ? fmt(finalPower) : '—'}</b></div>
+            <div><small>TOTAL REDAMAN JALUR PASS</small><b>{validInput ? totalLoss.toFixed(2) + ' dB' : '—'}</b></div>
+            <div><small>JUMLAH KOMPONEN</small><b>{nodes.length}</b></div>
+          </div>
+          <h2>Urutan Komponen dan Hasil Perhitungan</h2>
+          <table className="pon-print-table">
+            <thead><tr><th>No.</th><th>Komponen</th><th>Parameter</th><th>Input (dBm)</th><th>Loss (dB)</th><th>Output (dBm)</th></tr></thead>
+            <tbody>
+              <tr><td>—</td><td>OLT / FEEDER</td><td>Sumber input</td><td>{validInput ? fmt(sourcePower) : '—'}</td><td>—</td><td>{validInput ? fmt(sourcePower) : '—'}</td></tr>
+              {nodes.map((node, index) => {
+                const result = results[index];
+                let parameter = '—';
+                if (node.kind === 'fiber') parameter = `${node.lengthKm ?? 0} km × ${node.loss ?? 0.35} dB/km`;
+                if (node.kind === 'splice') parameter = 'Redaman sambungan';
+                if (node.kind === 'connector') parameter = 'Redaman konektor / adapter';
+                if (node.kind === 'plc') parameter = `Rasio 1:${node.plcPorts ?? 8}`;
+                if (node.kind === 'fbt') parameter = `${node.fbtDrop ?? 10}% Drop / ${100 - (node.fbtDrop ?? 10)}% Pass`;
+                if (node.kind === 'ont') parameter = 'Titik penerima ONT / ONU';
+                const lossText = node.kind === 'fbt'
+                  ? `Drop ${fbtDropLoss(node.fbtDrop ?? 10).toFixed(2)} / Pass ${fbtPassLoss(node.fbtDrop ?? 10).toFixed(2)}`
+                  : `${(result?.loss ?? 0).toFixed(2)}`;
+                return <tr key={node.id}><td>{index + 1}</td><td>{names[node.kind]}</td><td>{parameter}</td><td>{result ? fmt(result.inputPower) : '—'}</td><td>{lossText}</td><td>{result ? fmt(result.outputPower) : '—'}</td></tr>;
+              })}
+            </tbody>
+          </table>
+          {nodes.some(node => node.kind === 'fbt') && <>
+            <h2>Rincian Jalur FBT</h2>
+            <table className="pon-print-table">
+              <thead><tr><th>Komponen</th><th>Rasio</th><th>Loss Drop</th><th>Daya Drop</th><th>Loss Pass</th><th>Daya Pass</th></tr></thead>
+              <tbody>{nodes.map((node, index) => node.kind === 'fbt' ? <tr key={node.id}><td>FBT #{index + 1}</td><td>{node.fbtDrop ?? 10}% / {100 - (node.fbtDrop ?? 10)}%</td><td>{fbtDropLoss(node.fbtDrop ?? 10).toFixed(2)} dB</td><td>{results[index] ? fmt(results[index].dropPower ?? 0) : '—'}</td><td>{fbtPassLoss(node.fbtDrop ?? 10).toFixed(2)} dB</td><td>{results[index] ? fmt(results[index].passPower ?? 0) : '—'}</td></tr> : null)}</tbody>
+            </table>
+          </>}
+          <div className="pon-print-disclaimer">Catatan: Hasil merupakan estimasi berdasarkan parameter yang dimasukkan. Verifikasi nilai aktual menggunakan Optical Power Meter (OPM), datasheet perangkat, dan pengukuran lapangan. Untuk FBT, total redaman utama mengikuti jalur Pass; daya Drop dicantumkan terpisah.</div>
+          <footer className="pon-print-footer">© Copyright IRFANNJT - 087842457503</footer>
+        </section>
       </div>
     </main>
   );
