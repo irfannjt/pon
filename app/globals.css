@@ -33,4 +33,3 @@
 .pon-app:not(.dark) .pon-fbt-outputs b,.pon-app:not(.dark) .pon-fbt-outputs strong{color:#df5b0b}
 .pon-app:not(.dark) .pon-fbt-outputs>div+div b,.pon-app:not(.dark) .pon-fbt-outputs>div+div strong{color:#444}
 .pon-app:not(.dark) input:focus,.pon-app:not(.dark) select:focus{outline:2px solid #f7b184;border-color:#ed6b19}
-
