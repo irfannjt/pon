@@ -1,4 +1,4 @@
-css = r'''@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
 
 :root{color-scheme:light;--bg:#262626;--panel:#fff;--soft:#f4f4f4;--line:#e3e3e3;--text:#202020;--muted:#6b7280;--orange:#f26a12;--orange-dark:#df5908;--orange-soft:#fff0e5;--green:#087b52;--red:#b42318;--shadow:0 8px 24px rgba(0,0,0,.12)}
 *{box-sizing:border-box}
@@ -95,8 +95,3 @@ button{cursor:pointer}
 .pon-app.dark .pon-standard.good{background:#19382b}.pon-app.dark .pon-standard.warning{background:#3c321d}.pon-app.dark .pon-standard.danger{background:#402321}
 @media(max-width:850px){.pon-hero{align-items:flex-start;flex-direction:column}.pon-tabs{width:100%;overflow-x:auto}.pon-tabs button{flex:1;justify-content:center}.pon-source-grid{grid-template-columns:1fr 1fr}.pon-source-grid label{grid-column:1/-1}.pon-standard-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.pon-topbar{padding:12px 16px;min-height:66px}.pon-brand b{font-size:17px}.pon-shell{width:calc(100% - 20px);margin-top:14px}.pon-hero,.pon-panel{padding:17px;border-radius:13px}.pon-hero h1{font-size:23px}.pon-tabs button{padding:9px 8px;font-size:11px}.pon-panel-head{align-items:flex-start;flex-direction:column}.pon-source-grid,.pon-fields,.pon-node-metrics,.pon-fbt-outputs,.pon-result-grid,.pon-standard-grid{grid-template-columns:1fr}.pon-source-grid label{grid-column:auto}.pon-add-row{align-items:stretch;flex-direction:column}.pon-add-select{width:100%!important}.pon-primary{width:100%}.pon-chain{margin-left:10px;padding-left:16px}.pon-chain-start{margin-left:-31px}}
-'''
-path = "/mnt/data/pon-globals-complete.css"
-with open(path, "w", encoding="utf-8") as f:
-    f.write(css)
-print(f"File CSS lengkap dibuat: {path}")
